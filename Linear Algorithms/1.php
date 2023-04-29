@@ -10,18 +10,18 @@ $operationArr = ['+', '-', '/', '*'];
 
 $i = 0;
 while($i < count($operationArr)) {
-    switch ($operationArr[$i]):
+    switch ($operationArr[$i++]):
         case '+':
-            echo $a + $b;
+            echo $a + $b . "<br>";
             break;
         case '-':
-            echo $a - $b;
+            echo $a - $b . "<br>";
             break;
         case '/':
-            echo $a / $b;
+            echo $a / $b . "<br>";
             break;
         case '*':
-            echo $a * $b;
+            echo $a * $b . "<br>";
             break;
     endswitch;
 }
