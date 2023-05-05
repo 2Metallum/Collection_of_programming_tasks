@@ -8,20 +8,17 @@
 */
 
 function foo($string) {
-    $str = $string;
-    $str = preg_replace('/\s+/', " ", $str);
-
-    $arrOfWords = explode(" ", $str);
+    $words = explode(" ", $string);
     $count = 0;
-    foreach ($arrOfWords as $k) {
-        $countA = substr_count($k, 'A');
-        if($countA == 3) {
+
+    foreach ($words as $word) {
+        $a_count = substr_count($word, "А");
+        if ($a_count == 3) {
             $count++;
         }
     }
 
-    echo " количество слов, которые содержат ровно три буквы
-        'А': " . $count . PHP_EOL;
+    print_r($count);
 }
 
-foo('Ааа рабатА ораА');
+foo("ААА баба яга купила кота АААААА арбуз");
