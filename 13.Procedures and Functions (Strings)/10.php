@@ -21,11 +21,11 @@ function BinToDec($S) {
         if($digits[$i] == 0) {
             continue;
         } else {
-            $sum += pow($digits[$i], $i);
+            $sum += pow(2, $i);
         }
     }
 
     return $sum;
 }
 
-echo BinToDec('110');
+echo BinToDec('1111');
