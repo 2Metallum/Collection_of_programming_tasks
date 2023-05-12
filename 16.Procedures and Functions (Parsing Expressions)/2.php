@@ -8,20 +8,34 @@
         <терм> ::= <цифра> | <терм>*<цифра>
 */
 
-function evaluateExpression($S) {
-    $terms = preg_split('/[+-]/', $S);
-    $result = 0;
-    foreach ($terms as $term) {
-        $factors = preg_split('/\\\\*/', $term);
-        $value = 1;
-        foreach ($factors as $factor) {
-            $value *= intval($factor);
+function evaulateExpression($S)
+{
+// задаем выражение в виде строки S
+    $expression = $S;
+
+// находим все числа в выражении
+    preg_match_all('/\d+/', $expression, $numbers);
+
+// находим все операции в выражении
+    preg_match_all('/[\+\-\*]/', $expression, $operators);
+
+// инициализируем результат первым числом
+    $result = (int)$numbers[0][0];
+
+// проходим по всем числам и операциям в выражении
+    for ($i = 0; $i < count($numbers[0]); $i++) {
+        // если текущая операция - сложение, то добавляем следующее число к результату
+        if ($operators[0][$i] == '+') {
+            $result += (int)$numbers[0][$i + 1];
+        } // если текущая операция - вычитание, то вычитаем следующее число из результата
+        else if ($operators[0][$i] == '-') {
+            $result -= (int)$numbers[0][$i + 1];
+        } // если текущая операция - умножение, то умножаем результат на следующее число
+        else if ($operators[0][$i] == '*') {
+            $result *= (int)$numbers[0][$i + 1];
         }
-        if(strpos($term, '-') !== false) {
-            $value = -$value;
-        }
-        $result += $value;
     }
 
-    return $result;
+// выводим результат
+    echo $result;
 }
