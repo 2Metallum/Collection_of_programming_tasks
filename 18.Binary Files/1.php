@@ -7,3 +7,19 @@
         False.
 */
 
+function isFileNameValid($filename) {
+    $isValid_regex = '/^\w+\.\w+';
+    if(!preg_match($isValid_regex, $filename)) {
+        return false;
+    }
+
+    if(file_exists($filename)) {
+        return false;
+    }
+
+    if(!touch($filename)) {
+        return false;
+    }
+
+    return true;
+}
